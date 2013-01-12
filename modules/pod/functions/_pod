@@ -17,7 +17,20 @@ _pod_cmd_install()
     '*::xcode project file:_files -/ -g "*.xcodeproj"'
 }
 
+_pod_cmd_update()
+{
+  _arguments \
+    "--no-update[Skip running \'pod repo update\' before install]" \
+    "--no-clean[Leave SCM dirs like \'.git\' and \'.svn\' intact after downloading]" \
+    "--no-doc[Skip documentation generation with appledoc]" \
+    "--no-integrate[Skip integration of the Pods libraries in the Xcode project(s)]"
+}
+
 _pod_cmd_list()
+{
+}
+
+_pod_cmd_outdated()
 {
 }
 
@@ -75,9 +88,11 @@ _pod_cmds()
     "setup:Creates a directory at \`~/.cocoapods\' which will hold your spec-repos."
     "search:pod search [QUERY]. Searches for pods, ignoring case, whose name matches \`QUERY\'."
     "list:Lists all available pods."
+    "outdated:Shows the outdated pods in the current Podfile.lock."
     "install:pod install [PROJECT]. Downloads all dependencies defined in \`Podfile\' and creates an Xcode Pods library project in \`./Pods\'."
     "repo:Managing spec-repos"
     "spec:Managing PodSpec files"
+    "update:Updates all dependencies of a project."
   )
   _pod_base_options
   _describe 'Pod commands' cmdlist
