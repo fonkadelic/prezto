@@ -12,6 +12,7 @@
 local -a _1st_arguments
 _1st_arguments=(
     'help:Show help for the given command.'
+    'init:Generate a Podfile for the current directory.'
     'install:Install project dependencies'
     'ipc:Inter-process communication'
     'list:List pods'
@@ -149,7 +150,7 @@ __first_command_list ()
     local expl
     declare -a tasks
 
-    tasks=(install ipc list outdated podfile-info push repo search setup spec update)
+    tasks=(install init ipc list outdated podfile-info push repo search setup spec update)
 
     _wanted tasks expl 'help' compadd $tasks
 }
@@ -371,6 +372,11 @@ case $state in
             _arguments \
                 $_inherited_options \
                 $_setup_options
+        ;;
+
+        (init)
+            _arguments \
+                $_inherited_options
         ;;
 
     esac
